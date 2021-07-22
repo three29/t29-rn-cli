@@ -23,12 +23,7 @@ Prerequisites:
 
 Install Global CLI: (COMING SOON)
 
-- Until the package is publish to the npm repository, you can download the repo. Cd into the repo directory and `npm install`. the run `npm link` to install the package globally. If you want to remove the package you have run `npm unlink` from within the repo directory.
-
-```sh
-// npm
-npm install -g t29-rn-cli
-```
+- Until the package is publish to the npm repository, you can download the repo. Cd into the repo directory and `npm install`. Then run `npm link` to install the package globally. If you want to remove the package you have run `npm unlink` from within the repo directory.
 
 Run the CLI:
 
