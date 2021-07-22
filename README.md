@@ -34,7 +34,7 @@ Run the CLI:
 t29-rn create-app MyApp
 ```
 
-you can overwrite a directory by adding the --overwrite flag. More flags will be added over time.
+you can overwrite a directory by adding the `--overwrite` flag. More flags will be added over time.
 
 And T29-RN will walk you through the rest.
 
