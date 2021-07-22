@@ -21,7 +21,7 @@ Prerequisites:
 
 - Make sure you already setup React Native environtment (Android SDK, Java, etc.). [See React Native docs](https://reactnative.dev/docs/environment-setup)
 
-Install Global CLI:
+Install Global CLI: (COMING SOON)
 
 ```sh
 // npm
@@ -33,6 +33,8 @@ Run the CLI:
 ```sh
 t29-rn create-app MyApp
 ```
+
+you can overwrite a directory by adding the --overwrite flag. More flags will be added over time.
 
 And T29-RN will walk you through the rest.
 
