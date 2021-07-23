@@ -4,6 +4,7 @@ const {
 	generateScreen,
 	generateComponent,
 	generateRedux,
+	generateApiRedux,
 } = require('../tools/generator');
 
 const availableGenerator = [
@@ -18,6 +19,10 @@ const availableGenerator = [
 	{
 		name: 'redux',
 		description: 'Generates a Redux Toolkit slice for Redux.',
+	},
+	{
+		name: 'api',
+		description: 'Generates a Redux Toolkit RTK Query slice for Redux.',
 	},
 ];
 
@@ -48,6 +53,7 @@ module.exports = {
 	alias: ['create'],
 	run: async (toolbox) => {
 		const { print, parameters, strings } = toolbox;
+		const { startCase } = strings;
 		const { warning } = print;
 
 		let setting;
@@ -82,6 +88,7 @@ module.exports = {
 					let ScreenthemePath = ['../../Theme/osmiProvider'];
 					let componentApplyPath = [`Theme/osmiProvider`];
 					let nameProps = name;
+					let NameToCap = startCase(name);
 
 					// update path if there's namespace
 					if (name.includes('/')) {
@@ -118,6 +125,7 @@ module.exports = {
 						ScreenThemePath: ScreenthemePath.join('/'),
 						componentApplyPath: componentApplyPath.join('/'),
 						name: nameProps,
+						NameToCap: NameToCap,
 					};
 
 					// avoid the my-component-component phenomenon
@@ -147,6 +155,10 @@ module.exports = {
 
 						case 'redux':
 							await generateRedux(pascalName, parameters.second, toolbox);
+							break;
+
+						case 'api':
+							await generateApiRedux(propsInfo, parameters.second, toolbox);
 							break;
 
 						default:

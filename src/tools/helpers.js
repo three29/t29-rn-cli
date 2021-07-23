@@ -85,6 +85,8 @@ async function copyThemeFiles(log, boilerplatePath) {
 	}
 }
 
+//can use the toolbox.packagemanger here instead and combined these fucntions
+//https://github.com/infinitered/gluegun/blob/master/docs/toolbox-package-manager.md
 async function installDependancies() {
 	const { dependancies } = require('../config/theme');
 
@@ -92,6 +94,7 @@ async function installDependancies() {
 	await spawnProgress(dependanciesCmd, {});
 }
 
+//can use the toolbox.packagemanger here instead and combined these fucntions
 async function installDevDependancies() {
 	const { devDependancies } = require('../config/theme');
 

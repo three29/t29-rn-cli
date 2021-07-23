@@ -1,5 +1,5 @@
 const { filesystem } = require('gluegun');
-const { warning } = require('../tools/pretty');
+const { warning, important } = require('../tools/pretty');
 
 const generateScreen = async (propsInfo, filename, toolbox) => {
 	const {
@@ -73,7 +73,7 @@ const generateRedux = async (name, filename, toolbox) => {
 		template: { generate },
 	} = toolbox;
 
-	const reduxFilePath = `App/Redux/${filename}slice.js`;
+	const reduxFilePath = `App/Redux/${filename}Slice.js`;
 
 	if (fileExists(reduxFilePath)) {
 		return;
@@ -85,6 +85,32 @@ const generateRedux = async (name, filename, toolbox) => {
 		props: { name },
 	});
 	print.info(`${print.checkmark} ${reduxFilePath}`);
+	important(
+		`!!!IMPORTANT!!! - Make sure that you add your new redux slice to the configureStore.js, located in the Redux directory.`
+	);
+};
+
+const generateApiRedux = async (propsInfo, filename, toolbox) => {
+	const {
+		print,
+		template: { generate },
+	} = toolbox;
+
+	const reduxApiFilePath = `App/Services/${filename}Api.js`;
+
+	if (fileExists(reduxApiFilePath)) {
+		return;
+	}
+
+	await generate({
+		template: 'reduxApi.ejs',
+		target: reduxApiFilePath,
+		props: { ...propsInfo },
+	});
+	print.info(`${print.checkmark} ${reduxApiFilePath}`);
+	important(
+		`!!!IMPORTANT!!! - Make sure that you add your new api to the configureStore.js, located in the Redux directory.`
+	);
 };
 
 const fileExists = (filePath) => {
@@ -99,4 +125,5 @@ module.exports = {
 	generateScreen,
 	generateComponent,
 	generateRedux,
+	generateApiRedux,
 };

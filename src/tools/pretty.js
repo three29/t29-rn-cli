@@ -51,6 +51,7 @@ const command = (m = '', second = '', examples = []) => {
 
 const direction = (m = '') => p(cyan(m));
 const warning = (m = '') => p(yellow(m));
+const important = (m = '') => p(red(m));
 
 module.exports = {
 	p,
@@ -63,4 +64,5 @@ module.exports = {
 	startSpinner,
 	stopSpinner,
 	clearSpinners,
+	important,
 };
