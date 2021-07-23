@@ -72,6 +72,7 @@ async function removeFiles(log) {
 	}
 }
 
+//Proably do this a better way, but this works for now. Will circle back and review.
 async function copyThemeFiles(log, boilerplatePath) {
 	const { themeFiles } = require('../config/theme');
 
