@@ -1,0 +1,26 @@
+import {createSlice} from '@reduxjs/toolkit';
+
+const initialState = {
+    <%= props.name.toLowerCase() %>: { data: null, error: null },
+};
+
+export const <%= props.name %> = createSlice({
+  name: '<%= props.name.toLowerCase() %>',
+  initialState,
+  reducers: {
+    <%= props.name.toLowerCase() %>Request: state => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value = {
+          data: 'new <%= props.name %> Redux Slice',
+          error: false,
+      };
+    },
+  },
+});
+
+// Action creators are generated for each case reducer function
+export const { <%= props.name.toLowerCase() %>Request } = <%= props.name %>.actions;
+export default <%= props.name %>.reducer;

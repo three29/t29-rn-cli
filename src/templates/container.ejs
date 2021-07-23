@@ -1,0 +1,18 @@
+
+import React from 'react'
+import { ScrollView, Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+// Styles
+import styles from '<%= props.stylesPath %>'
+import { apply } from '<%= props.applyPath %>'
+
+const <%= props.name %> = props => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text><%= props.name %> Container</Text>
+    </SafeAreaView>
+  )
+}
+
+export default <%= props.name %>
