@@ -51,7 +51,7 @@ Containers are (mostly) full screens, although they can be sections of screens o
 
 To generate a new Container or Screen you can use the following generator commands:
 
-- `t29-rn g container TestScreen` - Will create a `TestScreen.js` and also a `Styles/TestScreenStyle.js`.
+- `t29-rn create container TestScreen` - Will create a `TestScreen.js` and also a `Styles/TestScreenStyle.js`.
 
 ### Navigation
 
@@ -65,7 +65,7 @@ React components go here...pretty self-explanatory. We won't go through each in 
 
 To generate a new Component you can use the following generator commands:
 
-- `t29-rn g component Button` - Will create a `Button.js` and also a `Styles/ButtonStyle.js`.
+- `t29-rn create component Button` - Will create a `Button.js` and also a `Styles/ButtonStyle.js`.
 
 ### Themes
 
@@ -87,13 +87,15 @@ Contains a preconfigured Redux and Redux ToolKit setup. Review each file careful
 
 Here again we have generators to help you out. You just have to use one of the following:
 
-- `t29-rn g redux Amazing` - Will generate and link the redux for `Amazing`.
+- `t29-rn create redux Amazing` - Will generate a redux slice for `Amazing`.
 
 ### Services
 
 Contains your API service and other important utilities for your application.
 
 - `pokemon.js` - is just an example of how to setup a RTK Query slice.
+
+- `t29-rn create api Amazing` - Will generate RTK QUERY for `Amazing`.
 
 ### Lib
 
