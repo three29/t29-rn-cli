@@ -7,8 +7,7 @@ import { useGetPokemonByNameQuery } from '../../Services/pokemon';
 import Button from '../../Components/button';
 
 // Styles
-import { apply } from '../../Theme/osmiProvider';
-import styles from './Styles/welcomeScreenStyle';
+import { connect } from '../../Theme/osmiProvider';
 
 const WelcomeScreen = (props) => {
   const [pokemonName, setPokemonName] = useState('bulbasaur');
@@ -44,5 +43,10 @@ const WelcomeScreen = (props) => {
     </SafeAreaView>
   );
 };
+
+const styles = connect({
+  btnReload: 'bg-primary rounded-md py-2 px-3 items-center mt-5',
+  btnReloadLabel: 'text-xl text-black font-bold text-center',
+});
 
 export default WelcomeScreen;

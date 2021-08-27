@@ -1,11 +1,16 @@
 import Config from './debugConfig';
 import Reactotron from 'reactotron-react-native';
 import { name } from '../../app.json';
-import { reactotronRedux as reduxPlugin } from 'reactotron-redux';
+import { reactotronRedux } from 'reactotron-redux';
 
 const reactotron = Reactotron.configure({ name })
-  .useReactNative()
-  .use(reduxPlugin());
+  .useReactNative({
+    networking: {
+      // optionally, you can turn it off with false.
+      ignoreUrls: /symbolicate/,
+    },
+  })
+  .use(reactotronRedux());
 
 if (Config.useReactotron) {
   // https://github.com/infinitered/reactotron for more options!

@@ -19,19 +19,6 @@ const generateScreen = async (propsInfo, filename, toolbox) => {
 		props: { ...propsInfo },
 	});
 	print.info(`${print.checkmark} ${ScreenFilePath}`);
-
-	const styleFilePath = `App/Containers/Screens/Styles/${filename}Style.js`;
-
-	if (fileExists(styleFilePath)) {
-		return;
-	}
-
-	await generate({
-		template: 'screenStyle.ejs',
-		target: styleFilePath,
-		props: { ...propsInfo },
-	});
-	print.info(`${print.checkmark} ${styleFilePath}`);
 };
 
 const generateComponent = async (propsInfo, filename, toolbox) => {
@@ -52,19 +39,6 @@ const generateComponent = async (propsInfo, filename, toolbox) => {
 		props: { ...propsInfo },
 	});
 	print.info(`${print.checkmark} ${componentFilePath}`);
-
-	const componentStyleFilePath = `App/Components/Styles/${filename}Style.js`;
-
-	if (fileExists(componentStyleFilePath)) {
-		return;
-	}
-
-	await generate({
-		template: 'styles.ejs',
-		target: componentStyleFilePath,
-		props: { ...propsInfo },
-	});
-	print.info(`${print.checkmark} ${componentStyleFilePath}`);
 };
 
 const generateRedux = async (name, filename, toolbox) => {
@@ -113,6 +87,26 @@ const generateApiRedux = async (propsInfo, filename, toolbox) => {
 	);
 };
 
+const generateStackNavigation = async (propsInfo, filename, toolbox) => {
+	const {
+		print,
+		template: { generate },
+	} = toolbox;
+
+	const StackFilePath = `App/Navigation/${filename}Stack.js`;
+
+	if (fileExists(StackFilePath)) {
+		return;
+	}
+
+	await generate({
+		template: 'navigation-Stack.ejs',
+		target: StackFilePath,
+		props: { ...propsInfo },
+	});
+	print.info(`${print.checkmark} ${StackFilePath}`);
+};
+
 const fileExists = (filePath) => {
 	if (filesystem.exists(filePath)) {
 		warning(`⚠️  Oopss,  "${filePath}" already exists.`);
@@ -126,4 +120,5 @@ module.exports = {
 	generateComponent,
 	generateRedux,
 	generateApiRedux,
+	generateStackNavigation,
 };

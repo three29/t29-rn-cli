@@ -103,12 +103,19 @@ async function installDevDependancies() {
 	await spawnProgress(devDependanciesCmd, {});
 }
 
+//TODO: has to be a better way to do this.
 async function podFileUpdate() {
+	const podFileContents =
+		'# use_flipper!() \n\n\n  post_install do |installer| \n    installer.pods_project.targets.each do |target| \n      target.build_configurations.each do |config| \n        config.build_settings.delete "IPHONEOS_DEPLOYMENT_TARGET" \n      end \n    end';
+
 	//switch to the ios directory
 	process.chdir('ios');
 
 	let podFileRaw = filesystem.read('Podfile');
-	podFileRaw = podFileRaw.replace('use_flipper!()', '# use_flipper!()');
+	podFileRaw = podFileRaw
+		.replace('react_native_post_install(installer)', '')
+		.replace('post_install do |installer|', '')
+		.replace('use_flipper!()', podFileContents);
 	let tempFile = 'tempPodFile';
 	await filesystem.write(tempFile, podFileRaw);
 	await filesystem.rename(tempFile, 'PodFile');

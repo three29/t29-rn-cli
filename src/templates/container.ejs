@@ -1,18 +1,20 @@
 
 import React from 'react'
-import { ScrollView, Text } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { View, Text } from 'react-native'
 
 // Styles
-import styles from '<%= props.stylesPath %>'
-import { apply } from '<%= props.applyPath %>'
+import { connect } from '<%= props.applyPath %>'
 
 const <%= props.name %> = props => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text><%= props.name %> Container</Text>
-    </SafeAreaView>
+    </View>
   )
 }
+
+const styles = connect({
+  container: 'flex items-center justify-center',
+})
 
 export default <%= props.name %>

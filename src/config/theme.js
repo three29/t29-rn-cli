@@ -1,5 +1,5 @@
 //Files that will be removed from the new app.
-const removeFiles = ['app.js', 'index.js', '.eslintrc.js'];
+const removeFiles = ['app.js', 'index.js', '.eslintrc.js', '.gitignore'];
 
 //directory and files that will be copied from Boilerplate directory to the new app.
 const themeFiles = [
@@ -7,7 +7,11 @@ const themeFiles = [
 	'.eslintrc.json',
 	'.eslintignore',
 	'.prettierrc.json',
+	'react-native.config.js',
+	'.gitignore',
 	'index.js',
+	'.env',
+	'.env_Sample',
 ];
 
 //Npm packages that will be intsalled as dependancies
@@ -19,6 +23,7 @@ const dependancies = [
 	'react-native-screens',
 	'react-native-safe-area-context',
 	'@react-native-community/masked-view',
+	'react-native-dotenv',
 	'@react-navigation/stack',
 	'react-redux',
 	'redux',

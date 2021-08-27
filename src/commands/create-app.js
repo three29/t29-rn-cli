@@ -72,13 +72,16 @@ module.exports = {
 				out = log(out.toString());
 
 				if (out.includes('Welcome to React Native!')) {
-					p(`   creating a new React Native app`);
+					startSpinner(' 3D-printing a new React Native app');
 				}
 				if (out.includes('Run instructions for')) {
-					p(`🧊 Cooling print nozzles`);
+					stopSpinner(' 3D-printing a new React Native app', '🔥');
+					startSpinner('Cooling print nozzles');
 				}
 			},
 		});
+
+		stopSpinner('Cleaning up React Native install', '🎫');
 
 		// note the original directory
 		const cwd = log(process.cwd());
@@ -91,9 +94,8 @@ module.exports = {
 
 		//copy theme files form boilerplate directory
 		startSpinner(' Coping Boilerplate files');
-		// await copyThemeFiles(log, boilerplatePath);
 		await copyThemeFiles(log, boilerplatePath);
-		stopSpinner(' Coping Boilerplate files', '🖨');
+		stopSpinner(' Coping Boilerplate files', '🚀');
 
 		//npm install Dev Dependancies
 		startSpinner(' Unboxing NPM dependencies');
@@ -101,24 +103,24 @@ module.exports = {
 
 		//npm install Dev Dependancies
 		await installDevDependancies();
-		stopSpinner(' Unboxing NPM dependencies', '🔥');
+		stopSpinner('Unboxing NPM dependencies', '📦');
 
 		//Remove flipper, we do not use it.
-		startSpinner('Removing Flipper');
+		startSpinner(' Removing Flipper');
 		await podFileUpdate();
-		stopSpinner(' Removing Flipper', '🖨');
+		stopSpinner(' Removing Flipper', '🔨');
 
 		// install pods
 		startSpinner(' Baking CocoaPods');
 		await spawnProgress('npx pod-install', {});
-		stopSpinner(' Baking CocoaPods', '☕️');
+		stopSpinner('Baking CocoaPods', '☕️');
 
 		// Create npm script to test that everything is built correctly
 
 		// commit any changes
 		startSpinner(' Backing everything up in source control');
 		await git(log, parameters.options.git, meta.version());
-		stopSpinner(' Backing everything up in source control', '🗄');
+		stopSpinner(' Backing everything up in source control', '🚚');
 
 		// back to the original directory
 		process.chdir(log(cwd));

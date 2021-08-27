@@ -11,7 +11,7 @@ const spinners = {};
 const startSpinner = (m = '') => {
 	let spinner = spinners[m];
 	if (!spinner) {
-		spinner = print.spin({ prefixText: '   ', text: gray(m) });
+		spinner = print.spin({ prefixText: '  ', text: gray(m) });
 		spinners[m] = spinner;
 	}
 	return spinner;

@@ -5,16 +5,17 @@ const {
 	generateComponent,
 	generateRedux,
 	generateApiRedux,
+	generateStackNavigation,
 } = require('../tools/generator');
 
 const availableGenerator = [
 	{
 		name: 'component',
-		description: 'Generates a react-hooks component & styles.',
+		description: 'Generates a react-hooks component.',
 	},
 	{
 		name: 'screen',
-		description: 'Generates a smart screen & styles.',
+		description: 'Generates a screen.',
 	},
 	{
 		name: 'redux',
@@ -23,6 +24,10 @@ const availableGenerator = [
 	{
 		name: 'api',
 		description: 'Generates a Redux Toolkit RTK Query slice for Redux.',
+	},
+	{
+		name: 'stack',
+		description: 'Generates a React Navigation Stack.',
 	},
 ];
 
@@ -35,7 +40,7 @@ const generateCommandNotAvailable = async (toolbox) => {
 		},
 	} = toolbox;
 	info(
-		`✨ Type ${bold('T29-RN-CLI create')} ${yellow(
+		`✨ Type ${bold('T29-RN-CLI generate')} ${yellow(
 			'________'
 		)} to run one of these generators:\n`
 	);
@@ -50,7 +55,7 @@ const generateCommandNotAvailable = async (toolbox) => {
 
 module.exports = {
 	description: 'Generates some files.',
-	alias: ['create'],
+	alias: ['generate'],
 	run: async (toolbox) => {
 		const { print, parameters, strings } = toolbox;
 		const { startCase } = strings;
@@ -82,7 +87,6 @@ module.exports = {
 
 					// dynamic path
 					let reduxPath = ['Redux/YourRedux'];
-					let stylesPath = [`Styles/${name}Style`];
 					let applyPath = ['../Theme/osmiProvider'];
 					let themePath = ['../Theme/osmiProvider'];
 					let ScreenthemePath = ['../../Theme/osmiProvider'];
@@ -102,15 +106,10 @@ module.exports = {
 							ScreenthemePath.unshift('..');
 							componentApplyPath.unshift('..');
 						});
-
-						for (let i = 0; i < splitNamespace.length - 1; i++) {
-							stylesPath.unshift('..');
-						}
 					} else {
 						// default path if no namespace
 						reduxPath.unshift('..');
 						applyPath.unshift('..');
-						stylesPath.unshift('.');
 						themePath.unshift('..');
 						ScreenthemePath.unshift('..');
 						componentApplyPath.unshift('..');
@@ -119,7 +118,6 @@ module.exports = {
 					// create props info for generator
 					const propsInfo = {
 						reduxPath: reduxPath.join('/'),
-						stylesPath: stylesPath.join('/'),
 						applyPath: applyPath.join('/'),
 						themePath: themePath.join('/'),
 						ScreenThemePath: ScreenthemePath.join('/'),
@@ -161,6 +159,14 @@ module.exports = {
 							await generateApiRedux(propsInfo, parameters.second, toolbox);
 							break;
 
+						case 'stack':
+							await generateStackNavigation(
+								propsInfo,
+								parameters.second,
+								toolbox
+							);
+							break;
+
 						default:
 							return await generateCommandNotAvailable(toolbox);
 					}
@@ -173,7 +179,8 @@ module.exports = {
 					p('* screen');
 					p('* Components');
 					p('* Redux');
-					p('* Saga');
+					p('* Redux toolKit API');
+					p('* React Navigation Stack Navigator');
 				}
 			} else {
 				warning(

@@ -1,10 +1,9 @@
 import React, { memo } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { View, Text } from 'react-native'
 
 // Styles
-import styles from '<%= props.stylesPath %>'
-import { apply } from '<%= props.componentApplyPath %>'
+import { connect } from '<%= props.componentApplyPath %>'
 
 const <%= props.name %> = props => {
   return (
@@ -14,15 +13,19 @@ const <%= props.name %> = props => {
   )
 }
 
-// // Prop type warnings
-// <%= props.name %>.propTypes = {
-//   someProperty: PropTypes.object,
-//   someSetting: PropTypes.bool.isRequired,
-// }
-//
-// // Defaults for props
-// <%= props.name %>.defaultProps = {
-//   someSetting: false
-// }
+  // Prop type warnings
+ <%= props.name %>.propTypes = {
+   someProperty: PropTypes.object,
+   someSetting: PropTypes.bool.isRequired,
+ }
+
+  // Defaults for props
+ <%= props.name %>.defaultProps = {
+   someSetting: false
+ }
+
+const styles = connect({
+  container: 'flex items-center justify-center',
+})
 
 export default memo(<%= props.name %>)
