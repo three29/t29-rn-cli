@@ -12,6 +12,7 @@ T29-RN include the following rock-solid technical decisions out of the box:
 - React Navigation 5
 - OsmiCSX
 - Reactotron-ready
+- React Native Dotenv
 - TDD-ready (COMMING SOON)
 - And more!
 
@@ -28,12 +29,31 @@ Install Global CLI: (COMING SOON)
 Run the CLI:
 
 ```sh
-t29-rn create-app MyApp
+rn new MyApp
 ```
 
 you can overwrite a directory by adding the `--overwrite` flag. More flags will be added over time.
 
+there are mulitple alias for creating a new app you can use `create, create-app, new`.
+
 And T29-RN will walk you through the rest.
+
+## Generators
+
+One of the great features of T29-RN is the ability to quickly generate some template files. By runing `rn g component NameOfComponent` T29-RN will create a file inside the components folder and pre-polutate it with a basic sturcture.
+
+There are mulitple alias that you can use for the generator `g, gen, generator, generators`.
+
+The current generator templates that T29-RN has
+
+- Component
+- Screens
+- Navigation Stack
+- Navigation Tabs
+- Redux toolkit Api Slice
+- Redux Toolkit Slice
+
+More to be added over time.
 
 ## Boilerplate walkthrough
 
@@ -47,11 +67,10 @@ Containers are (mostly) full screens, although they can be sections of screens o
 - `RootContainer.js` - main view of your application. Contains your status bar and navigation component
 - `Screens/LaunchScreen.js` - this is the first screen shown in your application. It's loaded into the Navigation component
 - `Screens/WelcomeScreen.js` - this screen demenstrates a working RTK Query. It's loaded into the Navigation component
-- `Screens/Styles` - styling for each of the above containers and screens
 
 To generate a new Container or Screen you can use the following generator commands:
 
-- `t29-rn create container TestScreen` - Will create a `TestScreen.js` and also a `Styles/TestScreenStyle.js`.
+- `rn g screen TestScreen` - Will create a `TestScreen.js` inside the Containers/Screen directory.
 
 ### Navigation
 
@@ -59,13 +78,21 @@ Your primary and other navigation components reside here.
 
 - `AppNavigation.js` - loads in your initial screen and creates your menu(s) in a StackNavigation
 
+#### Stack Navigator
+
+- `rn g stack Test` - Will create a `TestStack.js` inside the Navigation directory.
+
+#### Tabs Navigator
+
+- `rn g tabs Test` - Will create a `TestTabs.js` inside the Navigation directory.
+
 ### Components
 
 React components go here...pretty self-explanatory. We won't go through each in detail -- open each file to read the comments and view the code.
 
 To generate a new Component you can use the following generator commands:
 
-- `t29-rn create component Button` - Will create a `Button.js` and also a `Styles/ButtonStyle.js`.
+- `rn g component Button` - Will create a `Button.js` inside the Components directory.
 
 ### Themes
 
@@ -87,7 +114,7 @@ Contains a preconfigured Redux and Redux ToolKit setup. Review each file careful
 
 Here again we have generators to help you out. You just have to use one of the following:
 
-- `t29-rn create redux Amazing` - Will generate a redux slice for `Amazing`.
+- `rn g slice Amazing` - Will generate a redux slice for `Amazing`.
 
 ### Services
 
@@ -95,7 +122,7 @@ Contains your API service and other important utilities for your application.
 
 - `pokemon.js` - is just an example of how to setup a RTK Query slice.
 
-- `t29-rn create api Amazing` - Will generate RTK QUERY for `Amazing`.
+- `rn g api Amazing` - Will generate RTK QUERY for `Amazing`.
 
 ### Lib
 

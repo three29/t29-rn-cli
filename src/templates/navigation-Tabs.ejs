@@ -1,0 +1,47 @@
+import React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/stack';
+
+//Screens
+import LaunchScreen from '../Containers/Screens/launchScreen';
+
+const Tab = createBottomTabNavigator();
+
+const <%= props.name %> = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator 
+        initialRouteName="LaunchScreen" 
+        screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'MainHomeScreen') {
+            iconName = 'home';
+          } else {
+            return;
+          }
+
+          return (
+            <View style={{}}>
+              <Text></Text>
+            </View>
+          );
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'white',
+        inactiveTintColor: 'blue',
+        showLabel: false,
+        style: {
+         
+        },
+      }}>
+        <Tab.Screen name="LaunchScreen" component={LaunchScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default <%= props.name %>;

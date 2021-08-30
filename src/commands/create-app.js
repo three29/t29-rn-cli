@@ -10,15 +10,18 @@ const {
 	removeFiles,
 	copyThemeFiles,
 	installDependancies,
-	installDevDependancies,
 	podFileUpdate,
 	git,
 	closingCreateApp,
 } = require('../tools/helpers');
 
+const { dependancies, devDependancies } = require('../config/theme');
+
 const isWindows = process.platform === 'win32';
 
 module.exports = {
+	alias: ['create', 'create-app', 'new'],
+	description: 'Generates new React Native project.',
 	run: async (toolbox) => {
 		const { print, filesystem, meta, parameters, strings } = toolbox;
 		const { kebabCase } = strings;
@@ -97,12 +100,15 @@ module.exports = {
 		await copyThemeFiles(log, boilerplatePath);
 		stopSpinner(' Coping Boilerplate files', '🚀');
 
-		//npm install Dev Dependancies
-		startSpinner(' Unboxing NPM dependencies');
-		await installDependancies();
+		// clean up any spinners we forgot to clear
+		clearSpinners();
 
 		//npm install Dev Dependancies
-		await installDevDependancies();
+		startSpinner(' Unboxing NPM dependencies');
+		await installDependancies(dependancies, toolbox);
+
+		//npm install Dev Dependancies
+		await installDependancies(devDependancies, toolbox, true);
 		stopSpinner('Unboxing NPM dependencies', '📦');
 
 		//Remove flipper, we do not use it.
@@ -124,9 +130,6 @@ module.exports = {
 
 		// back to the original directory
 		process.chdir(log(cwd));
-
-		// clean up any spinners we forgot to clear
-		clearSpinners();
 
 		// we're done! round performance stats to .xx digits
 		const perfDuration =

@@ -26,9 +26,17 @@ function welcomeCreateAppHeader(projectName, meta, cli) {
 			'T29-RN-CLI'
 		)} - https://github.com/three29/t29-rn-cli`
 	);
-	p(` Using ${cyan(cli)}`);
-	p(` ────────────────────────────────────────────────\n`);
-	p(`⚡ Initializing app with T29-RN-CLI`);
+	p(`\n ────────────────────────────────────────────────\n`);
+	p('########  #######   #######  ');
+	p('   ##    ##     ## ##     ## ');
+	p('   ##           ## ##     ## ');
+	p('   ##     #######   ######## ');
+	p('   ##    ##               ## ');
+	p('   ##    ##        ##     ## ');
+	p('   ##    #########  #######  ');
+
+	p(`\n ────────────────────────────────────────────────\n`);
+	p(`⚡  Initializing app with T29-RN-CLI`);
 }
 
 function closingCreateApp(projectName, perfDuration) {
@@ -85,22 +93,12 @@ async function copyThemeFiles(log, boilerplatePath) {
 	}
 }
 
-//can use the toolbox.packagemanger here instead and combined these fucntions
-//https://github.com/infinitered/gluegun/blob/master/docs/toolbox-package-manager.md
-async function installDependancies() {
-	const { dependancies } = require('../config/theme');
-
-	const dependanciesCmd = 'npm install ' + dependancies.join(' ');
-	await spawnProgress(dependanciesCmd, {});
-}
-
-//can use the toolbox.packagemanger here instead and combined these fucntions
-async function installDevDependancies() {
-	const { devDependancies } = require('../config/theme');
-
-	const devDependanciesCmd =
-		'npm install --save-dev ' + devDependancies.join(' ');
-	await spawnProgress(devDependanciesCmd, {});
+async function installDependancies(dependancies, toolbox, dev = false) {
+	toolbox.packageManager.hasYarn();
+	await toolbox.packageManager.add(dependancies, {
+		dev,
+		dryRun: false,
+	});
 }
 
 //TODO: has to be a better way to do this.
@@ -143,7 +141,6 @@ module.exports = {
 	removeFiles,
 	copyThemeFiles,
 	installDependancies,
-	installDevDependancies,
 	podFileUpdate,
 	git,
 	closingCreateApp,

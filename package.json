@@ -4,7 +4,7 @@
 	"description": "Three29 ClI for React Native theme.",
 	"private": false,
 	"bin": {
-		"t29-rn": "bin/t29-rn-cli"
+		"rn": "bin/t29-rn-cli"
 	},
 	"license": "MIT",
 	"repository": "three29/t29-rn-cli",
